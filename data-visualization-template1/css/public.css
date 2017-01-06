@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  width: 100%;
+  position: relative;
+  font-family: "microsoft yahei", tahoma, Arial, Verdana, sans-serif;
+  background: -moz-linear-gradient(top,#010054 0,#000012 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#010054),color-stop(100%,#000012));
+  background:-webkit-linear-gradient(top,#010054 0,#000012 100%);
+  background: -o-linear-gradient(top,#010054 0,#000012 100%);
+  background:-ms-linear-gradient(top,#010054 0,#000012 100%);
+  background: linear-gradient(top,#010054 0,#000012 100%);
+  text-align: center;
+}
+
+.graph {
+  display: inline-block;
+  /*padding-right: 2%;*/
+}
+
+.axis text {
+  font-size: 20px;
+  fill: white;
+}
+
+.axis path {
+  stroke: white;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.y text {
+  text-anchor: end !important;
+}
+
+.legend{
+  position: absolute;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+  text-align: right;
+}
+
+.legend li{
+  display: inline-block;
+  margin-left: 30px;
+  line-height: 30px;
+}
+
+.legend .icon{
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-top: 4px;
+  text-align: center;
+  border: 2px solid #fff;
+}
+
+.legend .content{
+  float: left;
+  margin: 0;
+  font-size: 20px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<meta charset="utf-8">
+		<title>heatMap</title>
+		<link href="../css/public.css" rel="stylesheet">			
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript" src="../vendor/d3/d3.min.js"></script>
+	<script type="text/javascript" src="../componments/container.js"></script>
+      <script type="text/javascript" src="../componments/heatMap.js"></script>
+	
+	<script>
+      	//初始化页面
+      	function init() {
+                  //初始化容器
+      		var container = new Container({
+      			dom: d3.select('body').append('div').attr('class', 'container'),
+      			dataUrl: ['../data/testData3.json', '../data/testData4.json'],
+      			padding: {top:80, right:50, left:50, bottom:40},
+      			width: document.documentElement.clientWidth,
+      			height: document.documentElement.clientHeight,
+                        refreshTime: 4000
+      		});
+                  
+      		container.init();
+
+                  var heatMap = new HeatMap({
+                        colors: ['#DCD688','#C3D687','#97D884','#7CD67C','#64DBB3','#73D9DD','#70B7E1','#6B94E6','#657CE2', '#6C6EE7'],
+                        graph: container.svg,
+                        cardWidth: 95,
+                        cardHeight: 45,
+                        cardRadius: 14,
+                        offset: 18,
+                        animationTime: 1000,
+                        padding: {top:150, right:50, left:100, bottom:40},
+                  });
+
+                  container.getData(function(res){
+
+                        heatMap.draw(res.data);
+
+                  });
+                  
+      	}
+
+      	init();
+
+
+	</script>
+</html>

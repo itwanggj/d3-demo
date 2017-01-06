@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<meta charset="utf-8">
+		<title>barChart</title>
+		<link href="../css/public.css" rel="stylesheet">			
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript" src="../vendor/d3/d3.min.js"></script>
+	<script type="text/javascript" src="../componments/container.js"></script>
+	<script type="text/javascript" src="../componments/axis.js"></script>
+      <script type="text/javascript" src="../componments/legend.js"></script>
+	<script type="text/javascript" src="../componments/bar.js"></script>
+	
+	<script>
+      	//初始化页面
+      	function init() {
+                  //初始化容器
+      		var container = new Container({
+      			dom: d3.select('body').append('div').attr('class', 'container'),
+      			dataUrl: ['../data/testData1.json', '../data/testData2.json'],
+      			padding: {top:80, right:50, left:50, bottom:40},
+      			width: document.documentElement.clientWidth,
+      			height: document.documentElement.clientHeight,
+                        refreshTime: 4000
+      		});
+                  
+      		container.init();
+                  //初始化坐标轴
+      		var axis = new Axis({
+      			svg: container.svg,
+                        innerWidth: container.innerWidth,
+                        innerHeight: container.innerHeight,
+                        padding: {top:80, right:50, left:50, bottom:50},
+                        yformat:'.2s',
+                        rangePadding: 0.2,
+      		});
+                  
+      		axis.init();
+                  //图例
+      		var legend = new Legend({
+      			legend: container.legend
+      		});
+                  //柱形图
+      		var bar = new Bar({
+      			color: '#13A7FE',
+      			axis: axis,
+      			animationTime: 1000
+      		});
+
+      		container.getData(function(res){
+                        //更新坐标轴
+      		      axis.update(res.data.map(function (d){
+		                return d.name;
+		            }),[0, d3.max(res.data, function (d) { 
+		                return d.value;
+		            }) * 2]);
+                        //更新图形
+		            bar.draw(res.data);
+                        //绘制图例
+		            legend.draw([{
+                              name: 'FName',
+                              color: '#13A7FE'
+                        }]);
+      		});
+
+      	}
+
+      	init();
+
+
+	</script>
+</html>
